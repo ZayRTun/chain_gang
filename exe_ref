@@ -1,0 +1,16 @@
+0705
+  -Read From a CSV file-
+    -fgetcsv($handle, $length, $delimiter);
+      -fgetcsv will return a line from a file and parce it as a commented limited set of text
+    -Reads and parses line in file
+    -Returns array of fields
+    -Blank lines return [NULL]
+
+    $data = [];
+    $file = fopen($filename, 'r');
+    while (!feof($file)) {
+      $row = fgetcsv($file, 0, ',');
+      if ($row == [NULL] || $row === FALSE) {continue ;}
+      $data[] = $row;
+    }
+    fclose($file);

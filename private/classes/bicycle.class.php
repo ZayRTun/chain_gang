@@ -40,7 +40,7 @@
       $this->color = $args['color'] ?? NULL;
       $this->description = $args['description'] ?? NULL;
       $this->gender = $args['gender'] ?? NULL;
-      $this->condition_id = $args['condition_id'] ?? NULL;
+      $this->condition_id = $args['condition_id'] ?? 3;
       $this->weight_kg = $args['weight_kg'] ?? 0.0;
       $this->price = $args['price'] ?? 0.0;
 
