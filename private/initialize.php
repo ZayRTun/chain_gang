@@ -23,9 +23,10 @@
   define("WWW_ROOT", $doc_root);
 
   require_once ('functions.php');
+  require_once ('status_error_functions.php');
   require_once ('db_credentials.php');
   require_once ('database_functions.php');
-  
+
   // Load class definitions manually
 
   // -> Individually
@@ -46,3 +47,4 @@
   spl_autoload_register('my_autoload');
 
   $database = db_connect();
+  Bicycle::set_database($database);

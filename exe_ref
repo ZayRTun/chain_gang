@@ -15,29 +15,78 @@
     }
     fclose($file);
 
-
+-------------------
 -OOP with Database-
 
 0203
-  // To create a db object oriented way
-  $db = new mysqli($server, $user, $pwd, $db_name);
+  -MySQLi Methods and Properties
+    // To create a db object oriented way
+    $db = new mysqli($server, $user, $pwd, $db_name);
 
-  // mysqli_query($db, $sql)
-  $db->query($sql); // OOP calling obj method
+    // mysqli_query($db, $sql)
+    $db->query($sql); // OOP calling obj method
 
-  // mysqli_real_escape_string($db, $string)
-  $db->escape_string($string); Prevent sql injection attacks from inputs
+    // mysqli_real_escape_string($db, $string)
+    $db->escape_string($string); Prevent sql injection attacks from inputs
 
-  // mysqli_affected_rows($db)
-  $db->affected_rows; // to know how many rows affected by the last query
+    // mysqli_affected_rows($db)
+    $db->affected_rows; // to know how many rows affected by the last query
 
-  // mysqli_insert_id($db)
-  $db->insert_id; // Returns last created record's id
+    // mysqli_insert_id($db)
+    $db->insert_id; // Returns last created record's id
 
-  ------
-  $db = new mysqli($server, $user, $pwd, $db_name);
-  $result =$db->query($sql); // Returns an object as result
-    -// mysqli_fetch_assoc($result)
-    //
+    ------
+  -Working with returned result-
+    $db = new mysqli($server, $user, $pwd, $db_name);
+    $result =$db->query($sql); // Returns an object as result
+      -// mysqli_fetch_assoc($result)
+      -$result->fetch_assoc(); Returns a assoc array from the $result object
 
-re_0203
+      // mysqli_free_result($result);
+      -$result->free(); // To free the result
+
+      // To know the num of rows in the result
+        // mysqli_num_rows($result)
+        -$result->num_rows;
+
+        Note: $result->fetch_assoc(); // associative array
+              $result->fetch_row(); // basic array
+              $result->fetch_array(); // assoc, row, or both
+              $result->fetch_object(); // crude object (Not recommended)
+
+0205
+  -Disconnecting-
+    // mysqli_close($db); // To close database
+    -$db->close();  // Optional but a good practice
+      Note: its also a good practice to include into a shared footer file
+
+0301
+  -Active Record Design Pattern-
+    -A database driven class-
+      -Popular design pattern for using databases with OOP
+        -PHP frameworks like: Laravel, CakePHP, YEE and CodeIgniter all use this (Active Record Design pattern)
+      -In-memory objects that is the Instances of a class that we create are going to correspond to a single table row
+      -Object properties will match the table columns
+      -Object will also have methods for create, read, update and delete
+
+0302
+  -Set the Database-
+
+0304
+  -Build Objects Using Record Values-
+
+0305
+  -Find a Single Record-
+
+0306
+  -Display a Detail Page-
+
+0401
+  -CRUD Operations-
+
+0404
+  -Sanitize Values for Database-
+    -Preventing SQL injections
+
+0405
+  -

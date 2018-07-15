@@ -131,3 +131,15 @@ table#inventory tr td, table#inventory tr th {
   border: 1px solid #000;
   padding: 3px;
 }
+
+dt {
+  float: left;
+  clear: left;
+  margin-right: 5px;
+  font-weight: bold;
+  width: 130px;
+}
+
+dd {
+  margin-left: 0px;
+}

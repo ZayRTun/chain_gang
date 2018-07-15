@@ -22,3 +22,10 @@
       exit($msg);
     }
   }
+
+  function db_disconnect($connection)
+  {
+    if (isset($connection)) {
+      $connection->close();
+    }
+  }
