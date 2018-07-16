@@ -71,7 +71,7 @@
     public function create()
     {
       $attributes = $this->sanitized_attributes();
-
+      // language=<mySQL>
       $sql = "INSERT INTO bicycles (";
       $sql .= join(', ', array_keys($attributes));
       $sql .= ") VALUES ('";
@@ -82,6 +82,43 @@
         $this->id = self::$database->insert_id;
       }
       return $result;
+    }
+
+    public function update()
+    {
+      $attributes = $this->sanitized_attributes();
+      $attribute_pairs = [];
+      foreach ($attributes as $key => $value)
+      {
+        $attribute_pairs[] = "{$key}='{$value}'";
+      }
+      $sql = "UPDATE bicycles SET ";
+      $sql .= join(', ', $attribute_pairs);
+      $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
+      $sql .= "LIMIT 1";
+      $result = self::$database->query($sql);
+      return $result;
+    }
+
+    public function save()
+    {
+      // A new record will not have an ID yet
+      if (isset($this->id)) {
+        return $this->update();
+      } else {
+        return $this->create();
+      }
+    }
+
+    public function merge_attributes($args=[])
+    {
+      foreach ($args as $key => $value)
+      {
+        if (property_exists($this, $key) && !is_null($value))
+        {
+          $this->$key = $value;
+        }
+      }
     }
 
     // Properties which have database columns, excluding ID
@@ -116,7 +153,7 @@
     public $description;
     public $gender;
     public $price = 0.0;
-    protected $weight_kg = 0.0;
+    public $weight_kg = 0.0;
     protected $condition_id;
 
     public const CATEGORIES = ['Road', 'Mountain', 'Hybrid', 'Cruiser', 'City', 'BMX'];
