@@ -90,6 +90,18 @@
         return 'Unknown';
       }
     }
+    protected function validate()
+    {
+      $this->errors = [];
+
+      if (is_blank($this->brand)) {
+        $this->errors[] = 'Brand cannot be blank.';
+      }
+      if (is_blank($this->model)) {
+        $this->errors[] = 'Model cannot be blank.';
+      }
+      return $this->errors;
+    }
   }
 
   // Testing Class

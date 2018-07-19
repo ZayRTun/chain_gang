@@ -29,7 +29,7 @@
       $object_array = [];
       while ($record = $result->fetch_assoc())
       {
-        $object_array[] = self::instantiate($record);
+        $object_array[] = static::instantiate($record);
       }
 
       $result->free();
@@ -39,15 +39,15 @@
 
     public static function find_all()
     {
-      $sql = "SELECT * FROM bicycles";
-      return self::find_by_sql($sql);
+      $sql = "SELECT * FROM " . static::$table_name;
+      return static::find_by_sql($sql);
     }
 
     public static function find_by_id($id)
     {
-      $sql = "SELECT * FROM bicycles ";
+      $sql = "SELECT * FROM " . static::$table_name . " ";
       $sql .= "WHERE id='" . self::$database->escape_string($id) . "'";
-      $obj_array = self::find_by_sql($sql);
+      $obj_array = static::find_by_sql($sql);
       if (!empty($obj_array)) {
         return array_shift($obj_array);
       } else {
@@ -57,7 +57,7 @@
 
     protected static function instantiate($record)
     {
-      $object = new self();
+      $object = new static();
       // Could manually assign values to properties
       // but automatic assignment is easier and re-usable
       foreach ($record as $property => $value)
@@ -73,12 +73,8 @@
     {
       $this->errors = [];
 
-      if (is_blank($this->brand)) {
-        $this->errors[] = 'Brand cannot be blank.';
-      }
-      if (is_blank($this->model)) {
-        $this->errors[] = 'Model cannot be blank.';
-      }
+      // Add custom validations
+
       return $this->errors;
     }
 
@@ -89,7 +85,7 @@
 
       $attributes = $this->sanitized_attributes();
       // language=<mySQL>
-      $sql = "INSERT INTO bicycles (";
+      $sql = "INSERT INTO " . static::$table_name . " (";
       $sql .= join(', ', array_keys($attributes));
       $sql .= ") VALUES ('";
       $sql .= join("', '", array_values($attributes));
@@ -112,7 +108,7 @@
       {
         $attribute_pairs[] = "{$key}='{$value}'";
       }
-      $sql = "UPDATE bicycles SET ";
+      $sql = "UPDATE " . static::$table_name . " SET ";
       $sql .= join(', ', $attribute_pairs);
       $sql .= " WHERE id='" . self::$database->escape_string($this->id) . "' ";
       $sql .= "LIMIT 1";
@@ -145,7 +141,7 @@
     public function attributes()
     {
       $attributes = [];
-      foreach (self::$db_columns as $column)
+      foreach (static::$db_columns as $column)
       {
         if ($column == 'id') { continue; }
         $attributes[$column] = $this->$column;
@@ -165,7 +161,7 @@
 
     public function delete()
     {
-      $sql = "DELETE FROM bicycles ";
+      $sql = "DELETE FROM " . static::$table_name . " ";
       $sql .= "WHERE id='" . self::$database->escape_string($this->id) . "' ";
       $sql .= "LIMIT 1";
       $result = self::$database->query($sql);
