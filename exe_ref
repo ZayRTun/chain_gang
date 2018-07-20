@@ -103,3 +103,11 @@
 
 0501
   -The Admin Class-
+
+0502
+  -Hashing Passwords-
+    -PHP offers function for hashing Passwords: password_hash($pwd, PASSWORD_BCRYPT);
+      -$hash = password_hash($pwd, PASSWORD_BYCRYPT);
+
+0503
+  -
