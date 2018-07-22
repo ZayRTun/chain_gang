@@ -110,4 +110,21 @@
       -$hash = password_hash($pwd, PASSWORD_BYCRYPT);
 
 0503
-  -
+  -Admin Validations-
+
+0504
+  -Find by Username-
+
+0505
+  -Verify Password-
+    -To verify password with PHP: password_verify($pwd, $hashed_pwd);
+    -$bool = password_verify($pwd, $hashed_pwd);
+
+0506
+  -Define a Session Class-
+
+0508
+  -Improve the Session Class-
+
+0509
+  -Session Messages-
