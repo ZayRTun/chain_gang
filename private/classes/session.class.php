@@ -12,7 +12,7 @@
     public $username;
     private $last_login;
 
-    public const MAX_LOGIN_AGE = 60*60*24;
+    public const MAX_LOGIN_AGE = 60*60*24; // 1 day
 
     public function __construct()
     {
@@ -67,5 +67,21 @@
       } else {
         return true;
       }
+    }
+
+    public function message($msg="")
+    {
+      if (!empty($msg)) {
+        // Then this is a "set" message
+        $_SESSION['message'] = $msg;
+      } else {
+        // Then this is a "get" message
+        return $_SESSION['message'] ?? '';
+      }
+    }
+
+    public function clear_message()
+    {
+      unset($_SESSION['message']);
     }
   }
