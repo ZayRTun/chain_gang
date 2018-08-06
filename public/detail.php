@@ -17,57 +17,58 @@
 <?php $page_title = $bike->name(); ?>
 <?php include(SHARED_PATH . '/public_header.php'); ?>
 
-<div id="main">
-
-  <a href="bicycles.php">Back to Inventory</a>
-
-  <div id="page">
-
-    <div class="detail">
-      <dl>
-        <dt>Brand</dt>
-        <dd><?php echo h($bike->brand); ?></dd>
+<div class="container-fluid" id="main">
+  <div class="row">
+    <div class="col-xs-12">
+      <a href="bicycles.php">Back to Inventory</a>
+    </div>
+  </div>
+  <div class="row">
+    <h4 class="col-xs-11 col-xs-offset-1"><u>Bicycle Details</u></h4>
+    <div class="col-xs-11 col-xs-offset-1">
+      <dl class="row">
+        <dt class="col-xs-2">Brand</dt>
+        <dd class="col-xs-6"><?php echo h($bike->brand); ?></dd>
       </dl>
-      <dl>
-        <dt>Model</dt>
-        <dd><?php echo h($bike->model); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Model</dt>
+        <dd class="col-xs-6"><?php echo h($bike->model); ?></dd>
       </dl>
-      <dl>
-        <dt>Year</dt>
-        <dd><?php echo h($bike->year); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Year</dt>
+        <dd class="col-xs-6"><?php echo h($bike->year); ?></dd>
       </dl>
-      <dl>
-        <dt>Category</dt>
-        <dd><?php echo h($bike->category); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Category</dt>
+        <dd class="col-xs-6"><?php echo h($bike->category); ?></dd>
+       </dl>
+      <dl class="row">
+        <dt class="col-xs-2">Gender</dt>
+        <dd class="col-xs-6"><?php echo h($bike->gender); ?></dd>
       </dl>
-      <dl>
-        <dt>Gender</dt>
-        <dd><?php echo h($bike->gender); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Color</dt>
+        <dd class="col-xs-6"><?php echo h($bike->color); ?></dd>
       </dl>
-      <dl>
-        <dt>Color</dt>
-        <dd><?php echo h($bike->color); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Weight</dt>
+        <dd class="col-xs-6"><?php echo h($bike->weight_kg()) . ' / ' . h($bike->weight_lbs()); ?></dd>
       </dl>
-      <dl>
-        <dt>Weight</dt>
-        <dd><?php echo h($bike->weight_kg()) . ' / ' . h($bike->weight_lbs()); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Condition</dt>
+        <dd class="col-xs-6"><?php echo h($bike->condition()); ?></dd>
       </dl>
-      <dl>
-        <dt>Condition</dt>
-        <dd><?php echo h($bike->condition()); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Price</dt>
+        <dd class="col-xs-6"><?php echo h("$".number_format($bike->price, 2)); ?></dd>
       </dl>
-      <dl>
-        <dt>Price</dt>
-        <dd><?php echo h("$".number_format($bike->price, 2)); ?></dd>
-      </dl>
-      <dl>
-        <dt>Description</dt>
-        <dd><?php echo h($bike->description); ?></dd>
+      <dl class="row">
+        <dt class="col-xs-2">Description</dt>
+        <dd class="col-xs-6"><?php echo h($bike->description); ?></dd>
       </dl>
     </div>
-
   </div>
-
+  </div>
 </div>
 
 <?php include(SHARED_PATH . '/public_footer.php'); ?>

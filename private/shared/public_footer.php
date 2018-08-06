@@ -3,7 +3,7 @@
     
     <div class="container-fluid expanding-wrapper">
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-sm-10 col-sm-offset-1">
           <?php $image_url = url_for('/images/' . $super_hero_image); ?>
           <img class="img-responsive" id="super-hero-image" src="<?php echo $image_url; ?>" />
         </div>

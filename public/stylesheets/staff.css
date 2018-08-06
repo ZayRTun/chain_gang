@@ -144,8 +144,13 @@
 
 header h1 {
   margin: 0;
+  /*display: flex;*/
+  /*align-items: center;*/
 }
 header {
   background: cornflowerblue;
   height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

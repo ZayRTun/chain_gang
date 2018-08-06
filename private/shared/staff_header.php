@@ -14,19 +14,25 @@
 
   <body>
   <div class="container-fluid">
-    <header>
-      <h1 class="text-center">Chain Gang Staff Area</h1>
-    </header>
+    <div class="row">
+      <header>
+        <h1 class="text-center">Chain Gang Staff Area</h1>
+      </header>
+    </div>
   </div>
 
-    <nav class="navbar nav-navbar">
-      <ul>
-        <?php if ($session->is_logged_in()) { ?>
-        <li>User: <?php echo $session->username; ?></li>
-        <li><a href="<?php echo url_for('/staff/index.php'); ?>">Menu</a></li>
-        <li><a href="<?php echo url_for('/staff/logout.php'); ?>">Logout</a></li>
-        <?php } ?>
-      </ul>
+    <?php if ($session->is_logged_in()) { ?>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <h4 class="navbar-text"><strong><u>User: <?php echo $session->username; ?></u></strong></h4>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="<?php echo url_for('/staff/index.php'); ?>">Menu</a></li>
+          <li><a href="<?php echo url_for('/staff/logout.php'); ?>">Logout</a></li>
+        </ul>
+      </div>
     </nav>
+    <?php } ?>
 
     <?php echo display_session_message(); ?>
